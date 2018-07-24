@@ -64,11 +64,36 @@ void	shellcode_64(struct mach_header_64 *head, void *file)
 	content = (unsigned char *)file;
 	sect = (struct section_64 *)&head[1];
 	stuff = (char *)&head[1];
-	while (42)
+	for(;;)
 	{
 		if (strcmp(stuff, "__text") == 0)
 		{
 			sect = (struct section_64 *)stuff;
+			break ;
+		}
+		stuff++;
+	}
+	start = sect->offset;
+	length = sect->size;
+	print_shellcode(start, length, content);
+}
+
+void	shellcode_32(struct mach_header *head, void *file)
+{
+	struct section 	*sect;
+	uint32_t		start;
+	uint64_t		length;
+	unsigned char	*content;
+	char			*stuff;
+
+	content = (unsigned char *)file;
+	sect = (struct section *)&head[1];
+	stuff = (char *)&head[1];
+	for(;;)
+	{
+		if (strcmp(stuff, "__text") == 0)
+		{
+			sect = (struct section *)stuff;
 			break ;
 		}
 		stuff++;
