@@ -30,23 +30,16 @@ void	print_shellcode(uint32_t start, uint64_t length, void *file)
 {
 	size_t		i;
 	size_t		count;
-	int			y;
 	unsigned char *content;
 	FILE	*fd;
 
 	fd = fopen("shell.txt", "w");
 	content = (unsigned char *)file;
-	y = 0;
 	i = 0;
 	count = start;
 	fprintf(fd, "char name[] = \"");
 	while (i < length)
 	{
-		if (y % 16 == 0 && y > 0)
-		{
-			printf("\n");
-			y = 0;
-		}
 		if (content[start] == 0)
 			fprintf(fd, "\\x00");
 		else if (content[start] < 16)
