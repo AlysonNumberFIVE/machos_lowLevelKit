@@ -1,7 +1,5 @@
 # machos_s-proc
-Executable code generator for MAC-OS similar to s-proc
-
-Similar to s-proc for Linux shellcode generation.
+Executable shellcode generator for MAC-OS similar to s-proc for Linux
 
 Just write assembly code and compile it into an executable (nasm -f macho64 [target.s] -o [target.o]
 
