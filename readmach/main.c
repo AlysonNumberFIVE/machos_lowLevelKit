@@ -11,13 +11,21 @@ int			main(int argc, char **argv)
 	unsigned char 	*file;
 	size_t			size;
 
-	/* only works with one file currently */
+	/* adding check for flags */
 
 	map_file(&file, &size, argv[1]);
-	
+
 	/* read header */
 
 	read_header(file);
+
+	/* load command list */
+
+	load_command_list(file);
+
+	/* segment command linst */
+
+	segment_command_list(file);
 
 	return (0);
 }
