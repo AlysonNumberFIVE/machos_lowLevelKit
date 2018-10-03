@@ -14,6 +14,20 @@ void	print_section(struct section_64 *content)
 	/* section for flag values */	
 }
 
+void 	arrow(void)
+{
+	printf("___________");
+	printf("\t\n");
+	int i = 0;
+	while (i < 5)
+	{
+		printf("\t|\n");
+		i++;
+	}
+	printf("\t-----------|\n");
+	printf("\t           |\n");
+}
+
 void	section_list(struct segment_command_64 *segment64)
 {
 	struct section_64 	*sect;
@@ -21,6 +35,8 @@ void	section_list(struct segment_command_64 *segment64)
 
 	sect = (struct section_64 *)&segment64[1];
 	i = 0;
+	if (segment64->nsects > 0)
+		arrow();
 	while (i < segment64->nsects)
 	{
 		printf("\n\t\t------------------------------\n");
