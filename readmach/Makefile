@@ -12,6 +12,7 @@ SRC = 	32_or_64.c \
 		segment_command_list.c \
 		section_list.c
 
+
 OBJ = $(SRC:.c=.o)
 
 all:

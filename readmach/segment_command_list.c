@@ -13,6 +13,7 @@ void		section_flag_check(uint64_t	flags)
 
 static void	section_info_64(struct segment_command_64 *segment)
 {
+	printf("\n\n------------------------------\n");
 	printf("Segment name:        \t\t%s\n", segment->segname);
 	printf("Virtual mem address: \t\t%llu\n", segment->vmaddr);
 	printf("Virtual mem size:    \t\t%llu\n", segment->vmsize);

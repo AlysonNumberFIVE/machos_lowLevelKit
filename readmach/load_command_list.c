@@ -35,25 +35,39 @@ void	command_name(uint32_t cmd)
 		printf("\t\tLC_SUB_CLIENT\n\t\t\t -> ( struct sub_client_command )\n");
 	else if (cmd == LC_REQ_DYLD)
 		printf("\t\tLC_REQ_DYLD\n\t\t\t -> ( command not known\n )\n");
+	else if (cmd == LC_DATA_IN_CODE)
+		printf("\t\tLC_DATA_IN_CODE\n\t\t\t -> (struct linked_data_commandd )\n");
+	else if (cmd == LC_VERSION_MIN_MACOSX)
+		printf("\t\tLC_VERSION_MIN_MACOSX\n\t\t\t -> ( struct version_min_command )\n");
+	else if (cmd == LC_SOURCE_VERSION)
+		printf("\t\tLC_SOURCE_VERSION\n\t\t\t -> ( struct source_version_command )\n");
+	else if (cmd == LC_FUNCTION_STARTS)
+		printf("\t\tLC_FUNCTION_STARTS\n\t\t\t -> ( struct linkedit_data_command )\n");
+	else if (cmd >= INDIRECT_SYMBOL_LOCAL)
+		printf("\t\tINDIRECT_SYMBOL_LOCAL\n\t\t\t -> ( coming soon )\n");
 }
 
 void	load_command_list(unsigned char *content)
 {
 	uint32_t				i;
-	struct mach_header		*header;
+	struct mach_header_64	*header;
 	struct load_command		*loader;
 	struct load_command		*inc;
+	size_t					total = 0;
 
-	header = (struct mach_header *)content;
+	header = (struct mach_header_64 *)content;
 	loader = (struct load_command *)&header[1];
 	i = 0;
 	while (i < header->ncmds)
 	{
-		inc = &loader[i];
-		printf("in ->cmd value is %d\n", inc->cmd);
-		command_name(inc->cmd);
-		i++;	
+		printf("load_command : %#x\n", loader->cmd);
+		command_name(loader->cmd);
+		total += loader->cmdsize;
+		loader = (struct load_command *)((void*)loader +
+				loader->cmdsize);
+		i++;
 	}
+	printf("total <<<<<<<<<<   : %zu\n", total);
 }
 
 

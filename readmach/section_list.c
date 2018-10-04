@@ -16,7 +16,7 @@ void	print_section(struct section_64 *content)
 
 void 	arrow(void)
 {
-	printf("___________");
+	printf("_____________________________");
 	printf("\t\n");
 	int i = 0;
 	while (i < 5)
