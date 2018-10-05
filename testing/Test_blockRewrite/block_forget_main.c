@@ -168,7 +168,6 @@ void				readjust_offsets(struct mach_header_64 *header64,
 				struct section_64 *texter = (struct section_64 *)&is_text[1];
 				int k = 0;
 				is_text->vmsize += 80;
-				//is_text->filesize += 80;
 				while (k < is_text->nsects)
 				{
 					t = &texter[k];
@@ -196,7 +195,7 @@ void				readjust_offsets(struct mach_header_64 *header64,
 			seg->fileoff += value;
 			int j = 0;
 			struct section_64 *tmp;
-			seg->vmaddr += 80;
+			seg->vmsize += 80;
 			struct section_64 *sect = (struct section_64 *)&seg[1];
 			while (j < seg->nsects)
 			{
