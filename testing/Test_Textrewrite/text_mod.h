@@ -4,5 +4,6 @@
 # define TEXT_MOD_H
 
 #include "lib/lib.h"
+#include <mach-o/loader.h>
 
 #endif

@@ -12,6 +12,7 @@ void	print_section(struct section_64 *content)
 	printf("\t\t| relocation offest :      \t\t%u\n", content->reloff);
 	printf("\t\t| number of reloc entries: \t\t%u\n", content->reloff);
 	/* section for flag values */	
+	printf("\t\t| flag value :             \t\t%#x\n", content->flags);
 }
 
 void 	arrow(void)

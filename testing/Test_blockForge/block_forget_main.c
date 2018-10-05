@@ -1,4 +1,5 @@
 
+#include <mach-o/nlist.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include "block.h"
@@ -185,6 +186,8 @@ void				readjust_offsets(struct mach_header_64 *header64,
 		i++;
 	}
 	
+	size_t		symbol_offset;
+	size_t		p;
 
 	while (i < header64->ncmds)
 	{
@@ -210,6 +213,8 @@ void				readjust_offsets(struct mach_header_64 *header64,
 		{
 			struct symtab_command *sym = (struct symtab_command *)loader;
 			printf("SYMOFF += %zu\n", value);
+			p = sym->nsyms;
+			symbol_offset = sym->symoff;
 			sym->symoff += value;
 			sym->stroff += value;
 		}
@@ -241,6 +246,25 @@ void				readjust_offsets(struct mach_header_64 *header64,
 		loader = (struct load_command *)((void*)loader + loader->cmdsize);
 		i++;
 	}
+
+
+
+
+	struct nlist_64		*list;
+	struct nlist_64		*it;
+
+	list = (struct nlist_64 *)((void *)header64 + symbol_offset);
+	i = 0;
+	while (i < p)
+	{
+		it = &list[i];
+		if (it->n_sect)
+			it->n_value += 80;
+		i++;
+	}
+
+
+
 	write_file(header64, size, offset_v);
 }
 
