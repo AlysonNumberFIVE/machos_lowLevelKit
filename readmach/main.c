@@ -25,7 +25,12 @@ int			main(int argc, char **argv)
 
 	/* segment command linst */
 
+
 	segment_command_list(file);
+
+	/* string table list */
+
+	read_string_table((struct mach_header_64*)file);
 
 	return (0);
 }

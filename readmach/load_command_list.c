@@ -45,6 +45,8 @@ void	command_name(uint32_t cmd)
 		printf("\t\tLC_FUNCTION_STARTS\n\t\t\t -> ( struct linkedit_data_command )\n");
 	else if (cmd >= INDIRECT_SYMBOL_LOCAL)
 		printf("\t\tINDIRECT_SYMBOL_LOCAL\n\t\t\t -> ( coming soon )\n");
+	else if (cmd == LC_DATA_IN_CODE)
+		printf("\t\tLC_DATA_IN_CODE\n\t\t\t -> ( struct data_in_code_entry )\n");
 }
 
 void	load_command_list(unsigned char *content)

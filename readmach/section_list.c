@@ -40,6 +40,7 @@ void	section_list(struct segment_command_64 *segment64)
 	while (i < segment64->nsects)
 	{
 		printf("\n\t\t------------------------------\n");
+		printf("Block Number : %d\n", i);
 		print_section(&sect[i]);
 		i++;
 		printf("\t\t-------------------------------");

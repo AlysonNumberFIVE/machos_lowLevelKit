@@ -10,8 +10,8 @@ SRC = 	32_or_64.c \
 		main.c \
 		read_header.c \
 		segment_command_list.c \
-		section_list.c
-
+		section_list.c \
+		string_table_list.c
 
 OBJ = $(SRC:.c=.o)
 

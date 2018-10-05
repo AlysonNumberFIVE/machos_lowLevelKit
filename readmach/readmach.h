@@ -6,6 +6,8 @@
 #include "lib/lib.h"
 #include <mach-o/loader.h>
 
+
+void	read_string_table(struct mach_header_64 *header64);
 void	segment_command_list(unsigned char *content);
 void	section_list(struct segment_command_64 *segment64);
 void	read_header(unsigned char *content);
